@@ -1,0 +1,37 @@
+version: "2"
+
+services:
+  mariadb:
+#    ports:
+#      - "8006:3306"
+
+  php:
+    environment:
+      PHP_HOST_NAME: {{PROJ}}.dev.loc
+      PHP_XDEBUG_ENABLED: 1 # Set 1 to enable.
+      PHP_XDEBUG_AUTOSTART: 1
+
+  nginx:
+    environment:
+      VIRTUAL_HOST: {{PROJ}}.dev.loc
+#    ports:
+#      - "8000:80"
+
+  pma:
+    environment:
+      VIRTUAL_HOST: {{PROJ}}.pma.loc
+#    ports:
+#     - "8041:80"
+
+  mailhog:
+    environment:
+      VIRTUAL_HOST: {{PROJ}}.hog.loc
+#    ports:
+#      - "8042:8025"
+
+#  solr:
+#    image: solr:5.5-alpine
+#    volumes:
+#      - ./docker-runtime/solr:/opt/solr/server/solr/mycores
+#    ports:
+#      - "8043:8983"

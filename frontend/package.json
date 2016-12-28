@@ -1,0 +1,41 @@
+{
+  "name": "bootstrap4-gulp-base",
+  "version": "0.1.0",
+  "description": "Boostrap 4 gulp based boilerplate.",
+  "homepage": "https://github.com/macmladen/bootstrap4-gulp-base#readme",
+  "author": "Mladen Djuric (macmladen@gmail.com)",
+  "license": "GPL-2.0",
+  "main": "gulpfile.js",
+  "keywords": [
+    "gulp",
+    "sass",
+    "boilerplate",
+    "starter"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macmladen/bootstrap4-gulp-base.git"
+  },
+  "bugs": {
+    "url": "https://github.com/macmladen/bootstrap4-gulp-base/issues"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "bootstrap-sass": "^3",
+    "breakpoint-sass": "^2.7.0",
+    "browser-sync": "^2.14.3",
+    "browserify": "^13.1.0",
+    "compass-mixins": "^0.12.10",
+    "font-awesome": "^4.6.3",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "jquery": "^3.1.0",
+    "min.css": "^1.3.0",
+    "uglify-js": "^2.7.3"
+  }
+}
