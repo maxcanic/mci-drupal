@@ -14,7 +14,7 @@ services:
       - ./databases:/var/lib/mysql/databases
 
   php:
-    image: wodby/drupal-php:5.6 # Allowed: 7.0, 5.6.
+    image: wodby/drupal-php:7.0 # Allowed: 7.0, 5.6.
     restart: unless-stopped
     environment:
       PHP_SITE_NAME: dev
@@ -32,7 +32,7 @@ services:
       NGINX_SERVER_NAME: localhost
       NGINX_UPSTREAM_NAME: php
       NGINX_DOCROOT: docroot # Relative path inside the /var/www/html/ directory.
-      DRUPAL_VERSION: 7 # Allowed: 7, 8.
+      DRUPAL_VERSION: 8 # Allowed: 7, 8.
       VIRTUAL_HOST: {{PROJ}}.dev.devbox21.com
     volumes_from:
       - php
