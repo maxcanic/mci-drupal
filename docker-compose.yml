@@ -23,7 +23,7 @@ services:
       PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
     volumes:
       - ./:/var/www/html
-      - ./docker-runtime/drush:/root/.drush
+      - ./docker-runtime/drush:/home/www-data/.drush
 
   nginx:
     image: wodby/drupal-nginx

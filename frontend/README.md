@@ -1,3 +1,24 @@
-This build is only for CP Theme which is subtheme of Bootstrap theme.
+# Frontend
 
-This deals only with CSS (maybe also JS) but everything else is in subtheme.
+This is *frontend/theming* build which tries to remove frontend development and CSS theming out of Drupal site which should be free of Sass files and build tools.
+
+The structure here largely depends on basic theming techniques but please try to remove any build process and tools from the theme itself here.
+
+In the future, build process will include:
+
+- autoprefixing
+- CSS optimization (uglify for stage/prod)
+- CSS evaluation (number of selectors, properties, depth)
+- CSS linting
+- Sass linting
+- JS optimization (uglify, concatenate)
+- Vendor libraries inclusion
+- Images optimization
+- Critical CSS separation for page inlining
+- Inlining images, fonts, SVGs
+- JS linting
+- Sprites
+- PostCSS processing
+
+(feel free to suggest, we will translate that to `gulp` or whatever is current task runner)
+

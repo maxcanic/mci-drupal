@@ -14,7 +14,9 @@ We need to have
 
 ## Quick usage
 
-First, clone or download this repository to your projects directory
+Most of this will be automated with `dc` tool, once it is finished but this is how it could be done manually and hwo tool operates on its own. This is *work in progress* so it may change in time.
+
+First, clone or download this repository to your projects directory (suggested location is `~/Sites`)
 
 ```
 cd
@@ -22,13 +24,21 @@ cd Sites
 git clone git@gitlab.com:MacMladen/mci-boilerplate-d8.git
 ```
 
-Rename to the project name that will be used in domain and all other further operations (only latin letters, numbers and dashes)
+Rename to the project name that will be used in domain and all other further operations (only latin letters, numbers and dashes, like *my-project*)
 
 ```
 mv mci-boilerplate-d8 my-project
 ```
 
-Change project details in docker configuration files
+Change project name in docker configuration files
+
+- `docker-compose.yml` — standard container configuration that is used on production
+- `docker-compose.local.yml` — local container configuration that configures local development
+- `docker-compose.mac.yml` — local container configuration that enables *Xdebug* on Mac in local development
+
+Main configuration `docker-compose.yml` should not be altered (beside name) because it is optimized for live server. You may freely add ports or other things into `docker-compose.local.yml` which is the proper place for your own alteration.
+
+If changed, it should be added to `.gitignore` so that other users do not pick that up if they should not do that.
 
 ```
 # On Linux
@@ -37,10 +47,6 @@ sed -i "s/{{PROJ}}/my-project/g" docker-compose.yml docker-compose.local.yml fro
 # On mac use this
 sed -i '' "s/{{PROJ}}/my-project/g" docker-compose.yml docker-compose.local.yml frontend/gulpfile.js
 ```
-
-- `docker-compose.yml` — standard container configuration that is used on production
-- `docker-compose.local.yml` — local container configuration that configures local development
-- `docker-compose.mac.yml` — local container configuration that enables *Xdebug* on Mac in local development
 
 Now that we have proper structure, start containers.
 
@@ -117,3 +123,5 @@ exit
 alias drd='docker-compose exec --user 82 php drupal --root=/var/www/html/docroot'
 drd check
 ```
+
+You can add both aliases to your `~/.bash_aliases` file so that aliases are there after restart.
