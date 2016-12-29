@@ -14,6 +14,8 @@ We need to have
 
 ## Quick usage
 
+### Prepare directory structure and get files
+
 Most of this will be automated with `dc` tool, once it is finished but this is how it could be done manually and hwo tool operates on its own. This is *work in progress* so it may change in time.
 
 First, clone or download this repository to your projects directory (suggested location is `~/Sites`)
@@ -28,6 +30,8 @@ Rename to the project name that will be used in domain and all other further ope
 
 ```
 mv mci-boilerplate-d8 my-project
+
+cd my-project
 ```
 
 Change project name in docker configuration files
@@ -47,6 +51,8 @@ sed -i "s/{{PROJ}}/my-project/g" docker-compose.yml docker-compose.local.yml fro
 # On mac use this
 sed -i '' "s/{{PROJ}}/my-project/g" docker-compose.yml docker-compose.local.yml frontend/gulpfile.js
 ```
+
+### Start containers
 
 Now that we have proper structure, start containers.
 
@@ -71,6 +77,8 @@ When deployed, they will be on server as
 - http://my-project.dev.devbox21.com - Drupal site
 - http://my-project.pma.devbox21.com - phpMyAdmin
 - http://my-project.hog.devbox21.com - MailHog
+
+### Get Drupal and install site
 
 You can now perform site building using the alias
 
@@ -112,6 +120,8 @@ drc si --db-url=mysql://drupal:drupal@mariadb/drupal --account-name=admin --acco
 
 ...and use other `drush` magic.
 
+### Drupal console
+
 If you need *drupal console* you may use the following alias `alias drd='docker-compose exec --user 82 php drupal --root=/var/www/html/docroot'`
 
 First you have to install drupal console support for the site:
@@ -127,3 +137,67 @@ drd check
 ```
 
 You can add both aliases to your `~/.bash_aliases` file so that aliases are there after restart.
+
+```
+nano ~/.bash_aliases
+
+alias drd='docker-compose exec --user 82 php drupal --root=/var/www/html/docroot'
+alias drc='docker-compose exec --user 82 php drush @default.dev'
+
+```
+
+## `docker` and `docker-compose` commands
+
+`docker` controls individual containers by name or ID while `docker-compose` controls a group of containers, usually called _application_ or _stack_.
+
+Usual Docker commands:
+
+- `docker ps -a` — lists all docker containers, running, paused and stopped.
+- `docker inspect mcidev_nginx_1` — lists all details about the container by name or ID
+- `docker stats --no-stream` — shows resource usage, omit `--no-stream` to have live stats
+- `docker-compose up -d` — while in directory structure containing `docker-compose.yml`, creates and starts application.
+- `docker-compose pull` — fetch latest version of containers.
+- `docker-compose stop` — stops application
+- `docker-compose start` — starts application
+- `docker-compose restart` — restarts application
+- `docker-compose down` — remove containers (instance of contaners images)
+
+## Stopping and removing project
+
+Total removing (no confirmation, no undo, *just kill project*)
+
+```
+cd ~/Sites/my-project
+docker-compose down
+cd ..
+sudo rm -rf my-project
+```
+
+## FAQ
+
+I do not have `proxy_net` network?
+
+> Create one with this command: `docker network create proxy_net`
+
+I have web server already running, `netstat -lnp | grep 80` what should I do?
+
+> Uncomment *port* in `docker-compose.local.yml` and change values to some that are available
+
+How do I check if `my-project.dev.loc` is resolving, is it catching any `.loc` subdomain?
+
+> ping -c 1 my-project.dev.loc
+
+
+## References
+
+Like to learn more?
+
+- https://docs.docker.com/compose/reference/overview/
+- https://docs.docker.com/engine/reference/commandline/
+- http://docker4drupal.org/
+
+## Issues, bugs and features
+
+Still want more? Or something is inaccurate?
+
+File an issue (here)[https://gitlab.com/MacMladen/mci-boilerplate-d8/issues] and we'll do our best to fix it.
