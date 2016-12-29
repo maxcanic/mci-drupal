@@ -78,7 +78,9 @@ You can now perform site building using the alias
 alias drc='docker-compose exec --user 82 php drush @default.dev'
 
 # Only on Linux
+sudo chown 82:82 docker-runtime/drush
 chown :docker .
+chmod 775 .
 
 drc dl drupal-8  --drupal-project-rename=docroot
 ```
