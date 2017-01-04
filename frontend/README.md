@@ -6,19 +6,19 @@ The structure here largely depends on basic theming techniques but please try to
 
 In the future, build process will include:
 
-- autoprefixing
-- CSS optimization (uglify for stage/prod)
-- CSS evaluation (number of selectors, properties, depth)
-- CSS linting
-- Sass linting
-- JS optimization (uglify, concatenate)
-- Vendor libraries inclusion
-- Images optimization
-- Critical CSS separation for page inlining
-- Inlining images, fonts, SVGs
-- JS linting
-- Sprites
-- PostCSS processing
+- [ ] autoprefixing
+- [ ] CSS optimization (uglify for stage/prod)
+- [ ] CSS evaluation (number of selectors, properties, depth)
+- [ ] CSS linting
+- [ ] Sass linting
+- [ ] JS optimization (uglify, concatenate)
+- [ ] Vendor libraries inclusion
+- [ ] Images optimization
+- [ ] Critical CSS separation for page inlining
+- [ ] Inlining images, fonts, SVGs
+- [ ] JS linting
+- [ ] Sprites
+- [ ] PostCSS processing
 
-(feel free to suggest, we will translate that to `gulp` or whatever is current task runner)
+(feel free to suggest new tasks or order in [issues](https://gitlab.com/MacMladen/mci-boilerplate-d8/issues), we will translate that to `gulp` or whatever the current task runner is)
 

@@ -14,6 +14,8 @@ We need to have
 
 ## Quick usage
 
+This is mostly how can you do everything manually. `dc` tool will help you with all these tasks, automating them and providing wrapper to many useful operations.
+
 ### Prepare directory structure and get files
 
 Most of this will be automated with `dc` tool, once it is finished but this is how it could be done manually and hwo tool operates on its own. This is **work in progress** so it may change in time.
@@ -177,18 +179,19 @@ sudo rm -rf my-project
 
 ## FAQ
 
-I do not have `proxy_net` network?
+### I do not have `proxy_net` network?
 
-> Create one with this command: `docker network create proxy_net`
+Create one with this command: `docker network create proxy_net`
 
-I have web server already running, `netstat -lnp | grep 80` what should I do?
+### I have web server already running, `netstat -lnp | grep 80` what should I do?
 
-> Uncomment **port** in `docker-compose.local.yml` and change values to some that are available
+Uncomment **port** in `docker-compose.local.yml` and change values to some that are available
 
-How do I check if `my-project.dev.loc` is resolving, is it catching any `.loc` subdomain?
+### How do I check if `my-project.dev.loc` is resolving, is it catching any `.loc` subdomain?
 
-> ping -c 1 my-project.dev.loc
+`ping -c 1 my-project.dev.loc`
 
+More [FAQ](FAQ.md)
 
 ## References
 
@@ -202,4 +205,4 @@ Like to learn more?
 
 Still want more? Or something is inaccurate?
 
-File an issue (here)[https://gitlab.com/MacMladen/mci-boilerplate-d8/issues] and we'll do our best to fix it.
+File an issue [here](https://gitlab.com/MacMladen/mci-boilerplate-d8/issues) and we'll do our best to fix it.
