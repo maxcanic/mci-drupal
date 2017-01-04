@@ -1,6 +1,6 @@
 # Frontend
 
-This is *frontend/theming* build which tries to remove frontend development and CSS theming out of Drupal site which should be free of Sass files and build tools.
+This is **frontend/theming** build which tries to remove frontend development and CSS theming out of Drupal site which should be free of Sass files and build tools.
 
 The structure here largely depends on basic theming techniques but please try to remove any build process and tools from the theme itself here.
 

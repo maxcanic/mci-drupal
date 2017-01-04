@@ -4,19 +4,19 @@
 
 We need to have
 
-1. `docker` user and group set up as UID/GID 82:82
-2. `dnsmasq` resolving *.loc*
-3. `docker` installed and running
-4. `docker-compose` installed
-5. docker *vps-proxy* configured and running
-6. `node` and `npm` installed for frontend
+1. `docker` installed and running
+2. `docker-compose` installed
+3. `docker` user and group set up as UID/GID 82:82
+4. `dnsmasq` resolving *.loc*
+5. docker **vps-proxy** configured and running
+6. `node` and `npm` installed for **frontend**
 7. helper tool `dc` available [here](https://gitlab.com/MacMladen/dc/)
 
 ## Quick usage
 
 ### Prepare directory structure and get files
 
-Most of this will be automated with `dc` tool, once it is finished but this is how it could be done manually and hwo tool operates on its own. This is *work in progress* so it may change in time.
+Most of this will be automated with `dc` tool, once it is finished but this is how it could be done manually and hwo tool operates on its own. This is **work in progress** so it may change in time.
 
 First, clone or download this repository to your projects directory (suggested location is `~/Sites`)
 
@@ -26,7 +26,9 @@ cd Sites
 git clone git@gitlab.com:MacMladen/mci-boilerplate-d8.git
 ```
 
-Rename to the project name that will be used in domain and all other further operations (only latin letters, numbers and dashes, like *my-project*)
+Rename to the project name that will be used in domain and all other further operations (only latin letters, numbers and dashes, like *my-project*).
+
+> We will use **my-project** here as a placeholder, please, replace this in every command with your own project name.
 
 ```
 mv mci-boilerplate-d8 my-project
@@ -38,7 +40,7 @@ Change project name in docker configuration files
 
 - `docker-compose.yml` — standard container configuration that is used on production
 - `docker-compose.local.yml` — local container configuration that configures local development
-- `docker-compose.mac.yml` — local container configuration that enables *Xdebug* on Mac in local development
+- `docker-compose.mac.yml` — local container configuration that enables **Xdebug** on Mac in local development
 
 Main configuration `docker-compose.yml` should not be altered (beside name) because it is optimized for live server. You may freely add ports or other things into `docker-compose.local.yml` which is the proper place for your own alteration.
 
@@ -122,7 +124,7 @@ drc si --db-url=mysql://drupal:drupal@mariadb/drupal --account-name=admin --acco
 
 ### Drupal console
 
-If you need *drupal console* you may use the following alias `alias drd='docker-compose exec --user 82 php drupal --root=/var/www/html/docroot'`
+If you need **drupal console** you may use the following alias `alias drd='docker-compose exec --user 82 php drupal --root=/var/www/html/docroot'`
 
 First you have to install drupal console support for the site:
 
@@ -181,7 +183,7 @@ I do not have `proxy_net` network?
 
 I have web server already running, `netstat -lnp | grep 80` what should I do?
 
-> Uncomment *port* in `docker-compose.local.yml` and change values to some that are available
+> Uncomment **port** in `docker-compose.local.yml` and change values to some that are available
 
 How do I check if `my-project.dev.loc` is resolving, is it catching any `.loc` subdomain?
 
@@ -194,7 +196,7 @@ Like to learn more?
 
 - https://docs.docker.com/compose/reference/overview/
 - https://docs.docker.com/engine/reference/commandline/
-- http://docker4drupal.org/
+- http://docs.docker4drupal.org/
 
 ## Issues, bugs and features
 

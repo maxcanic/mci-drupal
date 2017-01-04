@@ -14,4 +14,4 @@ All files should be kept in original form.
 
 Also, here should be any modified source files like PSD that are modified to comply with needs for development (adjusted backgrounds, separated layers, etc).
 
-All files that should be used for *frontend* build should be in `/frontend/` directory for further processing and optimization by frontend workflow.
+All files that should be used for **frontend** build should be in `/frontend/` directory for further processing and optimization by frontend workflow.

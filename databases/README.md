@@ -1,6 +1,6 @@
 # Databases
 
-We dump databases here so that they can be included in `git` pushed to repository and/or used in *dev/stage/prod* on server.
+We dump databases here so that they can be included in `git` pushed to repository and/or used in **dev/stage/prod** on server.
 
 Because `git` remembers everything anyway it is safe to delete database dumps once they are commited.
 
