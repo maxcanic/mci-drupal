@@ -1,208 +1,102 @@
 # MCI Drupal 8 docker based boilerplate
 
-## Prequisites
+This project is the base which can be easily used to start a new project.
 
-We need to have
+The main idea is to use [docker](http://docker.com/) container technology and tools, [Docker4Drupal](http://docker4drupal.org/) project as a base for Drupal 7 and 8 development and set of predefined structures and tools to streamline development, front-end build, testing and deployment.
 
-1. `docker` installed and running
-2. `docker-compose` installed
-3. `docker` user and group set up as UID/GID 82:82
-4. `dnsmasq` resolving *.loc*
-5. docker **vps-proxy** configured and running
-6. `node` and `npm` installed for **frontend**
-7. helper tool `dc` available [here](https://gitlab.com/MacMladen/dc/)
+## Quick start guide for MCI Drupal 8 docker based boilerplate
 
-## Quick usage
+If you wish to start as quickly as possible and feel that you can follow along, follow this [Quick start guide](docs/quickstart.md)
 
-This is mostly how can you do everything manually. `dc` tool will help you with all these tasks, automating them and providing wrapper to many useful operations.
+For more information on individual requirements, read these documents:
 
-### Prepare directory structure and get files
+1. [Installing Docker](docs/install_docker.md)
+2. [Resolving local domains](docs/resolving.md)
+3. [Proxy containers to local domains](docs/local_proxy.md)
+4. [Front-end tools](docs/frontend.md)
+5. [`dc` helper tool](https://gitlab.com/MacMladen/dc/)
 
-Most of this will be automated with `dc` tool, once it is finished but this is how it could be done manually and hwo tool operates on its own. This is **work in progress** so it may change in time.
+## Why `docker`
 
-First, clone or download this repository to your projects directory (suggested location is `~/Sites`)
+There are many problems with local setup for development, some of them are
 
-```
-cd
-cd Sites
-git clone git@gitlab.com:MacMladen/mci-boilerplate-d8.git
-```
+1. Setting everything right
+2. Upgrading OS may break some hand made tuning
+3. Difference with stage/production like PHP version, services like `solr`
+4. Using some specific setup for a project
+5. Differences with developers' computers like different platforms, OS-es, versions
+6. ...and many more potential pitfalls
 
-Rename to the project name that will be used in domain and all other further operations (only latin letters, numbers and dashes, like *my-project*).
+Docker is a lightweight virtualization comparing to full virtualization like Virtual Box, VMWare, Parallels or similar.
 
-> We will use **my-project** here as a placeholder, please, replace this in every command with your own project name.
+There are some differences between implementation on **Linux** and on **Docker for Mac** or **Docker for Windows**.
 
-```
-mv mci-boilerplate-d8 my-project
+## Requirements for `docker`
 
-cd my-project
-```
+Most of the systems today are capable of running `docker` on Linux, however on Mac and Windows there are additional requirements:
 
-Change project name in docker configuration files
+* **All platforms** — 2GB at least, however for some comfort 8GB on system is recommended
+* **Linux** — any 64-bit x86 compatible processor with EPT instruction set and kernel newer than 3.10
+* **Mac** — 4GB of memory, Mac OS X 10.10.3 (Yosemite) or newer, Intel i3, i5, i7 or Xeon processor (machines newer than 2010)
+* **Windows** — any 64-bit x86 compatible processor with EPT instruction set and 64bit Windows 10 Pro, Enterprise and Education (1511 November update, Build 10586 or later). with Hypervisor enabled
 
-- `docker-compose.yml` — standard container configuration that is used on production
-- `docker-compose.local.yml` — local container configuration that configures local development
-- `docker-compose.mac.yml` — local container configuration that enables **Xdebug** on Mac in local development
+**Linux** based workstation should be updated to latest stable OS version for optimal development experience. Installation details can be found in [Installing Docker](install_docker.md) document and on [docker site](http://docker.com/). You should also consider using Linux kernel 4.4 or newer and adjust kernel boot arguments. You can find particular information [here](https://docs.docker.com/engine/installation/linux/)
 
-Main configuration `docker-compose.yml` should not be altered (beside name) because it is optimized for live server. You may freely add ports or other things into `docker-compose.local.yml` which is the proper place for your own alteration.
+**Macs** use native **Docker for Mac**. In case you wish to use `docker` on Macs older than 2010, you can use older `docker toolbox`, details are [here](https://docs.docker.com/engine/installation/mac/)
 
-If changed, it should be added to `.gitignore` so that other users do not pick that up if they should not do that.
+**Windows** can also use native solution **Docker for Windows** under Windows 10, otherwise also ahve to use `docker toolbox`, details are [here](https://docs.docker.com/engine/installation/windows/)
 
-```
-# On Linux
-sed -i "s/{{PROJ}}/my-project/g" docker-compose.yml docker-compose.local.yml frontend/gulpfile.js
+## Docker4Drupal
 
-# On mac use this
-sed -i '' "s/{{PROJ}}/my-project/g" docker-compose.yml docker-compose.local.yml frontend/gulpfile.js
-```
+[Docker4Drupal](http://docker4drupal.org/) project is just one of many existing Drupal stacks. It was chosen due to small size and easy usage scenario. There are many options that could be set in configuration files on per project basis.
 
-### Start containers
+# Other components
 
-Now that we have proper structure, start containers.
+### Proxy
 
-```
-# On Linux
-docker-compose -f docker-compose.yml -f docker-compose.local.yml up -d
+**Docker4Drupal** project uses ports to communicate with browser. In order to make it more simple and use domain names, we chose to use [jwilder/nginx-proxy](https://github.com/jwilder/nginx-proxy) container that dynamically scans docker network and proxies container so they are accessible by configuration/variable assigned name.
 
-# On mac use this
-docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.mac.yml up -d
-```
+### Resolver
 
-Now we have local server environment started that uses `vps-proxy` and `dnsmasq` to resolve my-project.dev.loc to browser.
+Resolving can be done most easily in `/etc/hosts` file but that requires editing every time we have new project so we developed **dnsmasq** based recipe that works on Linux and Mac (looking into Windows solution).
 
-Following services are available:
+### Front-end tools
 
-- http://my-project.dev.loc - Drupal site
-- http://my-project.pma.loc - phpMyAdmin
-- http://my-project.hog.loc - MailHog
+Front end build system is based on `node` and `npm` which set up local working build with `gulp` as task runner and **Sass** as main CSS preprocessor. **Sass** is developed in `/frontend` where are all the tools, libraries and unoptimized resources which are then compiled and optimized directly in theme according to `gulpfile.js` settings.
 
-When deployed, they will be on server as
+### `dc` tool
 
-- http://my-project.dev.devbox21.com - Drupal site
-- http://my-project.pma.devbox21.com - phpMyAdmin
-- http://my-project.hog.devbox21.com - MailHog
+`dc` is **bash** based tool that just simplifies commands and procedures for managing projects.
 
-### Get Drupal and install site
+## Files structure
 
-You can now perform site building using the alias
+* **assets** — this directory is intended to hold *all original** files given by the client. They should not be altered and, if needed, should be divided into subdirectories named by date they were given.
+* **databases** — Here are all database dumps and this directory is mounted into `mariadb` container so all files are accessible to be sourced into database.
+* **docker-runtime** — all docker persistent data is held here. That enables us to rebuild containers without loosing:
+  - `/databases` database files,
+  - `/metro` add theme to **phpMyAdmin** and to
+  - `/drush` keep useful `drush` commands.
+  - ...possibly something more in future
+* **docroot** — this is for the **root** of the website, where all Drupal files are held. Linux users should take care of permissions and everyone should know that `nginx` container is **very** (production) restrictive so nothing except `index.php` will get executed.
+* **docs** — all usable documentation is here
+* **frontned** — is holding everything frontend related so that `docroot` only holds Drupal theme and nothing else (Sass or build files). Usually there are following directories:
+  - **scss** — holding main **style.scss** and all components in their files in subdirectories
+  - **images** — for **source** images that are needed in CSS (i.e. for backgrounds) that will be optimized and copied to theme.
+  - **media** — for **source** media files that are used statically like slider images.
+  - **js** — for **source** JS files, mostly those that we write, usually configuration and initialization.
+  - **vendor** — for **source** vendor libraries whose components will be used and copied to theme.
+  - **fonts** — for **source** font files that are going to be minimised, inlined and included in theme.
+* **styleguide** — for more complex theme building with HTML/CSS/JS web components, **patternlab** and Style Guide Driven Development®.
+* `docker-compose.yml` — standard container configuration that is used on production
+* `docker-compose.local.yml` — local container configuration that configures local development
+* `docker-compose.mac.yml` — local container configuration that enables **Xdebug** on Mac in local development
 
-```
-alias drc='docker-compose exec --user 82 php drush @default.dev'
+## Contributing
 
-# Only on Linux
-sudo chown 82:82 docker-runtime/drush
-chown :docker .
-chmod 775 .
+The best way to contribute is to use **pull request** mechanism.
 
-drc dl drupal-8  --drupal-project-rename=docroot
-```
+Those who are not comfortable with PR workflow may use [issues](https://gitlab.com/MacMladen/mci-boilerplate-d8/issues) queue.
 
-On linux (currently) there is a problem with user/group permissions, so we need to claim back authority to access some directories
+## Contact
 
-```
-# On Linux
-sudo -u docker mkdir docroot/modules/{contrib,custom,dev,feature}
-sudo -u docker mkdir docroot/themes/{contrib,custom}
-sudo chmod 775 docroot/{modules,themes}/custom
-
-# On Mac
-mkdir docroot/modules/{contrib,custom,dev,feature}
-mkdir docroot/themes/{contrib,custom}
-```
-
-You can now add modules and themes with
-
-```
-drc dl module_filter admin_toolbar adminimal_admin_toolbar adminimal_theme
-```
-
-You can also install whole site from CLI
-
-```
-drc si --db-url=mysql://drupal:drupal@mariadb/drupal --account-name=admin --account-pass=q
-```
-
-...and use other `drush` magic.
-
-### Drupal console
-
-If you need **drupal console** you may use the following alias `alias drd='docker-compose exec --user 82 php drupal --root=/var/www/html/docroot'`
-
-First you have to install drupal console support for the site:
-
-```
-docker-compose exec --user 82 php sh
-
-composer require drupal/console:~1.0 --prefer-dist --optimize-autoloader
-exit
-
-alias drd='docker-compose exec --user 82 php drupal --root=/var/www/html/docroot'
-drd check
-```
-
-You can add both aliases to your `~/.bash_aliases` file so that aliases are there after restart.
-
-```
-nano ~/.bash_aliases
-
-alias drd='docker-compose exec --user 82 php drupal --root=/var/www/html/docroot'
-alias drc='docker-compose exec --user 82 php drush @default.dev'
-
-```
-
-## `docker` and `docker-compose` commands
-
-`docker` controls individual containers by name or ID while `docker-compose` controls a group of containers, usually called _application_ or _stack_.
-
-Usual Docker commands:
-
-- `docker ps -a` — lists all docker containers, running, paused and stopped.
-- `docker inspect mcidev_nginx_1` — lists all details about the container by name or ID
-- `docker stats --no-stream` — shows resource usage, omit `--no-stream` to have live stats
-- `docker-compose up -d` — while in directory structure containing `docker-compose.yml`, creates and starts application.
-- `docker-compose pull` — fetch latest version of containers.
-- `docker-compose stop` — stops application
-- `docker-compose start` — starts application
-- `docker-compose restart` — restarts application
-- `docker-compose down` — remove containers (instance of contaners images)
-
-## Stopping and removing project
-
-Total removing (no confirmation, no undo, *just kill project*)
-
-```
-cd ~/Sites/my-project
-docker-compose down
-cd ..
-sudo rm -rf my-project
-```
-
-## FAQ
-
-### I do not have `proxy_net` network?
-
-Create one with this command: `docker network create proxy_net`
-
-### I have web server already running, `netstat -lnp | grep 80` what should I do?
-
-Uncomment **port** in `docker-compose.local.yml` and change values to some that are available
-
-### How do I check if `my-project.dev.loc` is resolving, is it catching any `.loc` subdomain?
-
-`ping -c 1 my-project.dev.loc`
-
-More [FAQ](FAQ.md)
-
-## References
-
-Like to learn more?
-
-- https://docs.docker.com/compose/reference/overview/
-- https://docs.docker.com/engine/reference/commandline/
-- http://docs.docker4drupal.org/
-
-## Issues, bugs and features
-
-Still want more? Or something is inaccurate?
-
-File an issue [here](https://gitlab.com/MacMladen/mci-boilerplate-d8/issues) and we'll do our best to fix it.
+The best way to contact is to use [issues](https://gitlab.com/MacMladen/mci-boilerplate-d8/issues) queue.
