@@ -42,7 +42,27 @@ Once docker is running, you can set [local proxy](local_proxy.md), [resolving](r
 
 Adjust kernel boot arguments. You can find particular information [here](https://docs.docker.com/engine/installation/linux/)
 
+    sudo nano /etc/default/grub
+    # GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"
+    sudo update-grub
 
+    lsb_release -a
+
+
+### Docker user and group
+
+Change `docker` group to id 82 (www-data from container)
+
+    sudo groupmod -g 82 docker
+
+Adding new docker user (needed for Linux)
+
+    sudo useradd -g 82 -u 82 -r -s /usr/sbin/nologin docker
+
+### Docker composer
+
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
 
 ## Windows
 
