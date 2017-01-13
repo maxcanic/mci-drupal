@@ -4,8 +4,8 @@
 // date: 2015-09-29
 
 // Set some properties here ----------------------------------
-var mySass = './scss/style.scss';
-var myCSS  = '../docroot/themes/custom/{{PROJ}}/css';
+var mySass = './scss/styles.scss';
+var myCSS  = '../docroot/themes/custom/{{PROJ}}_theme/css';
 
 // -----------------------------------------------------------
 // if needed, other things could be hacked down there

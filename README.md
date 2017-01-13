@@ -2,7 +2,7 @@
 
 This project is the base which can be easily used to start a new project.
 
-The main idea is to use [docker](http://docker.com/) container technology and tools, [Docker4Drupal](http://docker4drupal.org/) project as a base for Drupal 7 and 8 development and set of predefined structures and tools to streamline development, front-end build, testing and deployment.
+The main idea is to use [docker](http://docker.com/) container technology and tools, [Docker4Drupal](http://docker4drupal.org/) project as a base for Drupal 7 and 8 development and set of predefined structures and tools to streamline development, frontend build, testing and deployment.
 
 ## Quick start guide for MCI Drupal 8 docker based boilerplate
 
@@ -13,7 +13,7 @@ For more information on individual requirements, read these documents:
 1. [Installing Docker](docs/install_docker.md)
 2. [Resolving local domains](docs/resolving.md)
 3. [Proxy containers to local domains](docs/local_proxy.md)
-4. [Front-end tools](docs/frontend.md)
+4. [Frontend tools](docs/frontend.md)
 5. [`dc` helper tool](https://gitlab.com/MacMladen/dc/)
 
 ## Why `docker`
@@ -60,7 +60,7 @@ Most of the systems today are capable of running `docker` on Linux, however on M
 
 Resolving can be done most easily in `/etc/hosts` file but that requires editing every time we have new project so we developed **dnsmasq** based recipe that works on Linux and Mac (looking into Windows solution).
 
-### Front-end tools
+### Frontend tools
 
 Front end build system is based on `node` and `npm` which set up local working build with `gulp` as task runner and **Sass** as main CSS preprocessor. **Sass** is developed in `/frontend` where are all the tools, libraries and unoptimized resources which are then compiled and optimized directly in theme according to `gulpfile.js` settings.
 

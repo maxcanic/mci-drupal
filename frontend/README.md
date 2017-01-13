@@ -22,3 +22,6 @@ In the future, build process will include:
 
 (feel free to suggest new tasks or order in [issues](https://gitlab.com/MacMladen/mci-boilerplate-d8/issues), we will translate that to `gulp` or whatever the current task runner is)
 
+## Recommended frontend workflow
+
+As we are trying to optimize resource loading as early as possible, you should have all styles generated in one **styles.css** or two, one with **critical.css** that will get inlined in page and everything else in **styles.css**.
