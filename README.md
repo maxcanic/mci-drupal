@@ -10,11 +10,13 @@ If you wish to start as quickly as possible and feel that you can follow along, 
 
 For more information on individual requirements, read these documents:
 
-1. [Installing Docker](docs/install_docker.md)
-2. [Resolving local domains](docs/resolving.md)
-3. [Proxy containers to local domains](docs/local_proxy.md)
-4. [Frontend tools](docs/frontend.md)
-5. [`dc` helper tool](https://gitlab.com/MacMladen/dc/)
+1. [Installing Docker](install_docker.md)
+2. [Resolving local domains](resolving.md)
+3. [Proxy containers to local domains](local_proxy.md)
+4. [Frontend tools](frontend.md)
+5. [Quick start](quickstart.md)
+6. [Using](using.md)
+7. [`dc` helper tool](https://gitlab.com/MacMladen/dc/)
 
 ## Why `docker`
 

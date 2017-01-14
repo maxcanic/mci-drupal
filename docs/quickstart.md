@@ -6,15 +6,17 @@ For more information on individual requirements, look into following documents:
 2. [Resolving local domains](resolving.md)
 3. [Proxy containers to local domains](local_proxy.md)
 4. [Frontend tools](frontend.md)
-5. [`dc` helper tool](https://gitlab.com/MacMladen/dc/)
+5. [Quick start](quickstart.md)
+6. [Using](using.md)
+7. [`dc` helper tool](https://gitlab.com/MacMladen/dc/)
 
 ## Prequisites
 
 We need to have
 
 1. `docker` installed and running
-2. `docker-compose` installed
-3. `docker` user and group set up as UID/GID 82:82
+2. `docker` user and group set up as UID/GID 82:82
+3. `docker-compose` installed
 4. `dnsmasq` resolving *.loc*
 5. docker **vps-proxy** configured and running
 6. `node` and `npm` installed for **frontend**
@@ -33,7 +35,8 @@ First, clone or download this repository to your projects directory (suggested l
 ```
 cd
 cd Sites
-git clone git@gitlab.com:MacMladen/mci-boilerplate-d8.git
+curl -L -o mci-boilerplate.zip https://gitlab.com/MacMladen/mci-boilerplate-d8/repository/archive.zip?ref=v1.0
+unzip mci-boilerplate.zip
 ```
 
 Rename to the project name that will be used in domain and all other further operations (only latin letters, numbers and dashes, like *my-project*).

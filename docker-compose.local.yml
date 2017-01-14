@@ -21,17 +21,17 @@ services:
     environment:
       VIRTUAL_HOST: {{PROJ}}.pma.loc
 #    ports:
-#     - "8041:80"
+#     - "8001:80"
 
   mailhog:
     environment:
       VIRTUAL_HOST: {{PROJ}}.hog.loc
 #    ports:
-#      - "8042:8025"
+#      - "8002:8025"
 
 #  solr:
 #    image: solr:5.5-alpine
 #    volumes:
 #      - ./docker-runtime/solr:/opt/solr/server/solr/mycores
 #    ports:
-#      - "8043:8983"
+#      - "8003:8983"
