@@ -2,13 +2,15 @@
 
 Please check these documents for installing various components and services
 
-1. [Installing Docker](install_docker.md)
-2. [Resolving local domains](resolving.md)
-3. [Proxy containers to local domains](local_proxy.md)
-4. [Frontend tools](frontend.md)
-5. [Quick start](quickstart.md)
-6. [Using](using.md)
-7. [`dc` helper tool](https://gitlab.com/MacMladen/dc/)
+1. [Docker 101](docker.md)
+2. [Installing Docker](install_docker.md)
+3. [Resolving local domains](resolving.md)
+4. [Proxy containers to local domains](local_proxy.md)
+5. [Frontend tools](frontend.md)
+6. [Quick start](quickstart.md)
+7. [Using](using.md)
+8. [`dc` helper tool](https://gitlab.com/MacMladen/dc/)
+9. [Terminal 101](terminal101.md)
 
 ## References
 
