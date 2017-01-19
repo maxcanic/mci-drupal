@@ -11,6 +11,8 @@ Please check these documents for installing various components and services
 7. [Using](using.md)
 8. [`dc` helper tool](https://gitlab.com/MacMladen/dc/)
 9. [Terminal 101](terminal101.md)
+10. [Local install commands sequence](local-docker.sh)
+11. [Server install commands sequence](server-docker.sh)
 
 ## References
 

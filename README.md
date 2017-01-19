@@ -8,15 +8,19 @@ The main idea is to use [docker](http://docker.com/) container technology and to
 
 If you wish to start as quickly as possible and feel that you can follow along, follow this [Quick start guide](docs/quickstart.md)
 
-For more information on individual requirements, read these documents:
+For more detailed information, read these documents:
 
-1. [Installing Docker](install_docker.md)
-2. [Resolving local domains](resolving.md)
-3. [Proxy containers to local domains](local_proxy.md)
-4. [Frontend tools](frontend.md)
-5. [Quick start](quickstart.md)
-6. [Using](using.md)
-7. [`dc` helper tool](https://gitlab.com/MacMladen/dc/)
+1. [Docker 101](docs/docker.md)
+2. [Installing Docker](docs/install_docker.md)
+3. [Resolving local domains](docs/resolving.md)
+4. [Proxy containers to local domains](docs/local_proxy.md)
+5. [Frontend tools](docs/frontend.md)
+6. [Quick start](docs/quickstart.md)
+7. [Using](docs/using.md)
+8. [`dc` helper tool](https://gitlab.com/MacMladen/dc/)
+9. [Terminal 101](docs/terminal101.md)
+10. [Local install commands sequence](docs/local-docker.sh)
+11. [Server install commands sequence](docs/server-docker.sh)
 
 ## Why `docker`
 
